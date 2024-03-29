@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# School Management Software
 
-## Getting Started
+Welcome to the School Management Software project! This software aims to streamline various administrative and academic processes within educational institutions, offering tools for managing users, classes, subjects, schedules, attendance, assignments, grades, and announcements.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Management**: Create, edit, and manage user accounts with different roles such as admin, teacher, student, and guardian.
+- **Class Management**: Organize classes by grade level and assign subjects to each class.
+- **Subject Management**: Define subjects offered by the institution.
+- **Scheduling**: Create schedules for classes with designated days, times, and subjects.
+- **Attendance Tracking**: Record and monitor student attendance for each class session.
+- **Assignment Management**: Create and manage assignments for classes, specifying due dates and related subjects.
+- **Grading System**: Record and manage grades for assignments, providing feedback to students.
+- **Announcements**: Broadcast announcements to different target audiences within the institution.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: [React](https://reactjs.org/) with [Next.js](https://nextjs.org/) for server-side rendering.
+- **Backend**: [Node.js](https://nodejs.org/) with [Express.js](https://expressjs.com/) for the RESTful API.
+- **Database**: [MySQL](https://www.mysql.com/) for storing application data.
+- **Authentication**: [JWT (JSON Web Tokens)](https://jwt.io/) for user authentication and authorization.
+- **UI Framework**: [Tailwind CSS](https://tailwindcss.com/) for responsive and customizable UI components.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Setup Instructions
 
-## Learn More
+1. **Clone the Repository**: `git clone https://github.com/soloman-err/school-management.git`
+2. **Install Dependencies**: `cd school-management && npm install`
+3. **Set Up MySQL Database**: Create a MySQL database and update the database configuration in the `.env` file.
+4. **Run the Application**: `npm run dev` to start the development server.
 
-To learn more about Next.js, take a look at the following resources:
+## Contribution Guidelines
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions to the project are welcome! If you'd like to contribute, please follow these guidelines:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Fork the repository and create a new branch for your feature or bug fix.
+- Make your changes and ensure that the code adheres to the project's coding standards.
+- Write tests for any new functionality added and ensure that existing tests pass.
+- Submit a pull request detailing the changes made and any relevant information.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT License](LICENSE).
