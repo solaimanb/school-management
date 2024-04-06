@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/shared/header/Header";
+import { CustomThemeProvider } from "@/providers/theme/CustomTheme";
+import AsideBar from "@/components/shared/others/AsideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <CustomThemeProvider>
+      <html lang="en">
+        <body className={`${inter.className} flex flex-col h-screen`}>
+          <Header />
+          <div className="flex flex-row h-full">
+            <AsideBar />
+            <main className="overflow-auto">{children}</main>
+          </div>
+        </body>
+      </html>
+    </CustomThemeProvider>
   );
 }
