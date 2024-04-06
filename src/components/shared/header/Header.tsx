@@ -1,5 +1,6 @@
 import { Bell, Landmark, MessageSquareText, Plus } from "lucide-react";
 import React, { memo } from "react";
+import NotificationDropdown from "./NotificationDropdown NotificationDropdown";
 
 export const Header = memo(() => {
   return (
@@ -8,7 +9,7 @@ export const Header = memo(() => {
         <h1 className="text-3xl font-semibold">TYP</h1>
 
         <div className="flex flex-row gap-5 items-center">
-          <Bell />
+          <NotificationDropdown />
           <MessageSquareText />
 
           <button className="border px-2 py-1 rounded-full flex gap-2 font-semibold">
