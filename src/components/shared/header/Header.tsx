@@ -1,4 +1,4 @@
-import { Bell, Landmark, MessageSquareText } from "lucide-react";
+import { Bell, Landmark, MessageSquareText, Plus } from "lucide-react";
 import React from "react";
 
 export const Header = () => {
@@ -14,7 +14,7 @@ export const Header = () => {
 
             <button className="border px-2 py-1 rounded-full flex gap-2 font-semibold">
               <Landmark />
-              Institute Name
+              Institute
             </button>
           </div>
         </div>
