@@ -1,16 +1,16 @@
 // types.ts
 
-export interface User {
-  // Define the properties of the user object here
-  // For example:
-  // id: number;
-  // name: string;
-  // etc.
-}
+export type User = {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+};
 
-export interface AuthContextValue {
+export type AuthContextValue = {
   user: User | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-}
+  register: (email: string, password: string) => Promise<void>;
+};

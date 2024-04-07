@@ -9,7 +9,10 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { AuthContextValue, User } from "@/types/auth/auth";
 import auth from "@/services/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 interface Props {
   children: ReactNode;
@@ -51,6 +54,15 @@ const AuthProvider = ({ children }: Props) => {
     }
   };
 
+  const register = async (email: string, password: string) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
+
   const logout = () => {
     auth.signOut();
     setUser(null);
@@ -58,7 +70,9 @@ const AuthProvider = ({ children }: Props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, login, register, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
