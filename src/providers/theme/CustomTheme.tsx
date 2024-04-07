@@ -1,24 +1,22 @@
 "use client";
-import React, { createContext, useContext, ReactNode } from "react";
+import React, { createContext, ReactNode } from "react";
 
 const theme = {
   colors: {
-    primary: "#0070f3",
-    secondary: "#6c757d",
-    success: "#28a745",
-    danger: "#dc3545",
-    warning: "#ffc107",
-    info: "#17a2b8",
-    light: "#f8f9fa",
-    dark: "#343a40",
-    white: "#ffffff",
-    black: "#000000",
+    primary: "#1565C0", // deep blue
+    secondary: "#78909C", // cool grey
+    success: "#388E3C", // strong green
+    danger: "#C62828", // deep red
+    warning: "#F9A825", // bright yellow
+    info: "#0277BD", // bright blue
+    light: "#CFD8DC", // light grey
+    dark: "#263238", // dark grey
+    white: "#ffffff", // White
+    black: "#000000", // Black
   },
 };
 
-const ThemeContext = createContext(theme);
-
-export const useTheme = () => useContext(ThemeContext);
+export const ThemeContext = createContext(theme);
 
 export const CustomThemeProvider = ({ children }: { children: ReactNode }) => {
   return (
