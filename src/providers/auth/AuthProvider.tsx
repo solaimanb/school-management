@@ -1,7 +1,15 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import {
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
+import firebase from "firebase/app";
+import "firebase/auth";
 import { AuthContextValue, User } from "@/types/auth/auth";
+import auth from "@/services/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 interface Props {
   children: ReactNode;
@@ -9,27 +17,25 @@ interface Props {
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
 
-// Create an axios instance with default settings
-const api = axios.create({
-  baseURL: "/api",
-  headers: {
-    Authorization: `Bearer ${Cookies.get("access") || ""}`,
-  },
-});
-
 const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const authenticate = async () => {
-    try {
-      const response = await api.get<User>("/user");
-      setUser(response.data);
-      setIsAuthenticated(true);
-    } catch (error) {
-      console.error("Authentication failed:", error);
-      setIsAuthenticated(false);
-    }
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        });
+        setIsAuthenticated(true);
+      } else {
+        setUser(null);
+        setIsAuthenticated(false);
+      }
+    });
   };
 
   useEffect(() => {
@@ -38,25 +44,15 @@ const AuthProvider = ({ children }: Props) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await api.post<{ access: string }>("/login", {
-        email,
-        password,
-      });
-
-      const { access } = response.data;
-
-      Cookies.set("access", access);
-      api.defaults.headers.Authorization = `Bearer ${access}`;
+      await signInWithEmailAndPassword(auth, email, password);
       setIsAuthenticated(true);
-      authenticate();
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
 
   const logout = () => {
-    Cookies.remove("access");
-    api.defaults.headers.Authorization = "";
+    auth.signOut();
     setUser(null);
     setIsAuthenticated(false);
   };
