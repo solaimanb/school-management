@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/shared/header/Header";
-import { CustomThemeProvider } from "@/providers/theme/CustomTheme";
+import Header from "@/components/shared/header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CustomThemeProvider>
-      <html lang="en">
-        <body className={`${inter.className} flex flex-col h-screen`}>
-          <Header />
-          <main className="overflow-auto">{children}</main>
-        </body>
-      </html>
-    </CustomThemeProvider>
+    <html lang="en">
+      <body className={`${inter.className} flex flex-col h-screen`}>
+        <Header />
+        <main className="overflow-auto">{children}</main>
+      </body>
+    </html>
   );
 }
